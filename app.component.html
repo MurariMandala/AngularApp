@@ -1,0 +1,66 @@
+
+<div *ngIf=isSucccess class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success : </strong> {{statusMsg}} 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf=isFail class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Fail : </strong> PassWord and Confirm PassWord must be same.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<h2>User Registration Form</h2>
+<div class="col-4">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">First name</label>
+      <input type="text" class="form-control" pattern="[a-zA-Z]+"formControlName="username" name="username" placeholder="Enter Username">
+      <span class="error" *ngIf="username.invalid && username.touched">First name is required (Allow only alphabets)</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Last name</label>
+      <input type="text" class="form-control" pattern="[a-zA-Z]+" formControlName="lastname" name="lastname" placeholder="Enter Username">
+      <span class="error" *ngIf="lastname.invalid && lastname.touched">Last name is required (Allow only alphabets)</span>
+    </div>  
+    <div class="form-group">
+      <label for="exampleInputPassword1">Mobile No</label>
+      <input type="text" class="form-control" pattern="[1-9]{1}[0-9]{9}" formControlName="phoneno" name="phoneno" placeholder="Mobile No">
+      <span class="error" *ngIf="phoneno.invalid && phoneno.touched">Mobile no is invalid</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <input type="text" class="form-control" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" formControlName="email" name="email" placeholder="Enter Email Id">
+      <span class="error" *ngIf="email.invalid && email.touched">Valid Email is required</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">DOB</label>
+      <input type="date" class="form-control" formControlName="dob" name="dob" >
+      <span class="error" *ngIf="dob.invalid && dob.touched">DOB is required</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Address</label>
+      <input type="text" class="form-control" name="address" placeholder="Enter Address">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">City</label>
+      <input type="text" class="form-control" name="city" placeholder="Enter City">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">State</label>
+      <input type="text" class="form-control" name="state" placeholder="Enter State">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">PassWord</label>
+      <input type="password" class="form-control" minlength="8" name="password" formControlName="password" placeholder="Enter PassWord">
+      <span class="error" *ngIf="password.invalid && password.touched">PassWord is required (Min Length='8')</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Confirm PassWord</label>
+      <input type="password" class="form-control" minlength="8" name="confirmpassword" formControlName="confirmpassword" placeholder="ReEnter PassWord">
+      <span class="error" *ngIf="confirmpassword.invalid && confirmpassword.touched">Confirm PassWord is required (Min Length='8')</span>
+    </div>
+    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Login</button>
+  </form>
+  </div>
